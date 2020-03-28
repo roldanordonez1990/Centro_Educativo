@@ -11,7 +11,7 @@ import java.util.List;
  */
 @Entity
 @NamedQuery(name="Curso.findAll", query="SELECT c FROM Curso c")
-public class Curso implements Serializable {
+public class Curso extends Entidad implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
