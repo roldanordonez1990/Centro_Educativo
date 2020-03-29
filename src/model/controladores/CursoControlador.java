@@ -20,7 +20,7 @@ public class CursoControlador extends Controlador {
 	 * 
 	 */
 	public CursoControlador() {
-		super(Curso.class, "EvaluacionCentroEducativo");
+		super(Curso.class, "Centro_Educativo");
 	}
 
 	/**
@@ -69,5 +69,10 @@ public class CursoControlador extends Controlador {
 		}
 		em.close();
 		return entities;
+	}
+
+	public static CursoControlador getControlador() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

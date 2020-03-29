@@ -19,7 +19,7 @@ public class ValoracionMateriaControlador extends Controlador {
 	 * 
 	 */
 	public ValoracionMateriaControlador() {
-		super(Valoracionmateria.class, "EvaluacionCentroEducativo");
+		super(Valoracionmateria.class, "Centro_Educativo");
 	}
 
 	/**

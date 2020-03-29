@@ -20,7 +20,7 @@ public class ProfesorControlador extends Controlador {
 	 * 
 	 */
 	public ProfesorControlador() {
-		super(Profesor.class, "EvaluacionCentroEducativo");
+		super(Profesor.class, "Centro_Educativo");
 	}
 
 	/**

@@ -40,7 +40,7 @@ public class VentanaPrincipal extends JFrame {
 		this.setMinimumSize(new Dimension(ANCHO, ALTO));
 		this.setJMenuBar(new Menu());
 		this.setResizable(true);
-		
+		this.setLayout(new BorderLayout());
 		this.add(new ToolBar(), BorderLayout.NORTH);
 
 		agregarGestionCierreAplicacion();

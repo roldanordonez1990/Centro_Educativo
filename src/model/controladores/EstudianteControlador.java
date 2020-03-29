@@ -19,7 +19,7 @@ public class EstudianteControlador extends Controlador {
 	 * 
 	 */
 	public EstudianteControlador() {
-		super(Estudiante.class, "EvaluacionCentroEducativo");
+		super(Estudiante.class, "Centro_Educativo");
 	}
 
 	/**
