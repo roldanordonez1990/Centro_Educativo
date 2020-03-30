@@ -149,6 +149,7 @@ public class PanelGestionProfesor extends JPanel {
 		this.actual.setEmail(this.panelDatosPersonales.getEmail());
 		this.actual.setTipologiasexo(this.panelDatosPersonales.getTipologiaSexo());
 		this.actual.setColor(this.panelDatosPersonales.getColorElegido());
+		this.actual.setImagen(this.panelDatosPersonales.getImagen());
 
 		if (actual.getId() == 0) {
 			ProfesorControlador.getInstancia().persist(this.actual);
@@ -203,6 +204,7 @@ public class PanelGestionProfesor extends JPanel {
 			panelDatosPersonales.setTelefono(this.actual.getTelefono());
 			panelDatosPersonales.setEmail(this.actual.getEmail());
 			panelDatosPersonales.setColorElegido(this.actual.getColor());
+			panelDatosPersonales.setImagen(this.actual.getImagen());
 
 		}
 	}

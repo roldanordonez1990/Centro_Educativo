@@ -125,6 +125,31 @@ public class PanelDatosPersonales extends JPanel {
 		jtfApellido2.setEnabled(true);
 		c.anchor = GridBagConstraints.WEST;
 		this.add(jtfApellido2, c);
+		
+		c.gridx = 2;
+		c.gridy = 4;
+		jtfDireccion.setEnabled(true);
+		c.anchor = GridBagConstraints.WEST;
+		//c.insets = new Insets(0, 0, 5, 5);
+		//Le damos unas dimensiones al scroll
+		jsp.setPreferredSize( new Dimension(100, 100));
+		this.add(jsp, c);
+
+		jbtCambiarImg = new JButton("Elegir imagen");
+		jbtCambiarImg.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				seleccionaFichero(getImagen());
+			}
+		});
+
+		c.gridx = 2;
+		c.gridy = 5;
+		c.anchor = GridBagConstraints.WEST;
+		this.add(jbtCambiarImg, c);
+
 
 		// Inclusión del campo "Dni"
 		c.gridx = 0;
@@ -153,30 +178,7 @@ public class PanelDatosPersonales extends JPanel {
 		this.add(jtfDireccion, c);
 
 		
-		c.gridx = 2;
-		c.gridy = 6;
-		jtfDireccion.setEnabled(true);
-		c.anchor = GridBagConstraints.WEST;
-		c.insets = new Insets(0, 0, 5, 5);
-		//Le damos unas dimensiones al scroll
-		jsp.setPreferredSize( new Dimension(100, 100));
-		this.add(jsp, c);
-
-		jbtCambiarImg = new JButton("Elegir imagen");
-		jbtCambiarImg.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-
-				seleccionaFichero(getImagen());
-			}
-		});
-
-		c.gridx = 2;
-		c.gridy = 7;
-		c.anchor = GridBagConstraints.WEST;
-		this.add(jbtCambiarImg, c);
-
+		
 		
 
 		// Inclusión del campo "Teléfono"
@@ -448,6 +450,7 @@ public class PanelDatosPersonales extends JPanel {
 				public void mouseReleased(MouseEvent e) {
 					// TODO Auto-generated method stub
 					super.mouseReleased(e);
+					this.mostrarMenu(e);
 				}
 
 				@Override
@@ -466,7 +469,8 @@ public class PanelDatosPersonales extends JPanel {
 
 							@Override
 							public void actionPerformed(ActionEvent e) {
-								seleccionarImagen();
+								//seleccionarImagen();
+								seleccionaFichero(getImagen());
 
 							}
 						});
@@ -569,6 +573,7 @@ public class PanelDatosPersonales extends JPanel {
 		// reininciar de nuevo el color a peporque no sabía cómo hacer que saliera por
 		// defecto de nuevo el colo gris
 		this.setBackground(Color.gray);
+		this.jsp.resetKeyboardActions();
 	}
 
 }
