@@ -126,30 +126,8 @@ public class PanelDatosPersonales extends JPanel {
 		c.anchor = GridBagConstraints.WEST;
 		this.add(jtfApellido2, c);
 		
-		c.gridx = 2;
-		c.gridy = 4;
-		jtfDireccion.setEnabled(true);
-		c.anchor = GridBagConstraints.WEST;
-		//c.insets = new Insets(0, 0, 5, 5);
-		//Le damos unas dimensiones al scroll
-		jsp.setPreferredSize( new Dimension(100, 100));
-		this.add(jsp, c);
-
-		jbtCambiarImg = new JButton("Elegir imagen");
-		jbtCambiarImg.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-
-				seleccionaFichero(getImagen());
-			}
-		});
-
-		c.gridx = 2;
-		c.gridy = 5;
-		c.anchor = GridBagConstraints.WEST;
-		this.add(jbtCambiarImg, c);
-
+		
+		
 
 		// Inclusión del campo "Dni"
 		c.gridx = 0;
@@ -249,8 +227,34 @@ public class PanelDatosPersonales extends JPanel {
 			}
 
 		});
+		
+		c.gridx = 1;
+		c.gridy = 11;
+		jtfDireccion.setEnabled(true);
+		c.anchor = GridBagConstraints.WEST;
+		//c.insets = new Insets(0, 0, 5, 5);
+		//Le damos unas dimensiones al scroll
+		jsp.setPreferredSize( new Dimension(150, 150));
+		this.add(jsp, c);
 
-	}
+		jbtCambiarImg = new JButton("Elegir imagen");
+		jbtCambiarImg.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				seleccionaFichero(getImagen());
+			}
+		});
+		
+		jbtCambiarImg.setPreferredSize( new Dimension(150, 20));
+		c.gridx = 1;
+		c.gridy = 12;
+		c.anchor = GridBagConstraints.WEST;
+		this.add(jbtCambiarImg, c);
+
+
+	}   
 
 	/**
 	 * 
