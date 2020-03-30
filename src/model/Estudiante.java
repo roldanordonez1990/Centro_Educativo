@@ -22,11 +22,16 @@ public class Estudiante extends Entidad implements Serializable {
 
 	private String apellido2;
 
+	private String color;
+
 	private String direccion;
 
 	private String dni;
 
 	private String email;
+
+	@Lob
+	private byte[] imagen;
 
 	private String nombre;
 
@@ -35,6 +40,11 @@ public class Estudiante extends Entidad implements Serializable {
 	//bi-directional many-to-one association to Valoracionmateria
 	@OneToMany(mappedBy="estudiante")
 	private List<Valoracionmateria> valoracionmaterias;
+
+	//bi-directional many-to-one association to Tipologiasexo
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="idTipologia")
+	private Tipologiasexo tipologiasexo;
 
 	public Estudiante() {
 	}
@@ -63,6 +73,14 @@ public class Estudiante extends Entidad implements Serializable {
 		this.apellido2 = apellido2;
 	}
 
+	public String getColor() {
+		return this.color;
+	}
+
+	public void setColor(String color) {
+		this.color = color;
+	}
+
 	public String getDireccion() {
 		return this.direccion;
 	}
@@ -85,6 +103,14 @@ public class Estudiante extends Entidad implements Serializable {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public byte[] getImagen() {
+		return this.imagen;
+	}
+
+	public void setImagen(byte[] imagen) {
+		this.imagen = imagen;
 	}
 
 	public String getNombre() {
@@ -123,6 +149,14 @@ public class Estudiante extends Entidad implements Serializable {
 		valoracionmateria.setEstudiante(null);
 
 		return valoracionmateria;
+	}
+
+	public Tipologiasexo getTipologiasexo() {
+		return this.tipologiasexo;
+	}
+
+	public void setTipologiasexo(Tipologiasexo tipologiasexo) {
+		this.tipologiasexo = tipologiasexo;
 	}
 
 }

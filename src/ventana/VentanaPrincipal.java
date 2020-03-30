@@ -7,6 +7,8 @@ import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
 
 import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JToolBar;
@@ -19,6 +21,7 @@ public class VentanaPrincipal extends JFrame {
 	public static int ANCHO = 500;
 	public static int ALTO = 500;
 	public static String TITULO_APLICACION = "Centro Educativo";
+	static JMenu jmenu = new JMenu();
 	
 	
 	private CacheImagenes cacheImagenes;

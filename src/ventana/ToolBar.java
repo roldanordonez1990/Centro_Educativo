@@ -33,6 +33,7 @@ public class ToolBar extends JToolBar {
             @Override
             public void actionPerformed(ActionEvent e) {
             	//VentanaPrincipal.jtabbetMenu.setSelectedIndex(num);
+           
             	System.out.println("Has hecho clic en el botón: \"" + toolTip + "\"");
             }
         });

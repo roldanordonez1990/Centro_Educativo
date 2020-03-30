@@ -47,7 +47,7 @@ public class PanelGestionMateria extends JPanel {
 
 	public PanelGestionMateria() {
 		super();
-		// this.add(barraHerramientas(), BorderLayout.NORTH);
+	
 		actual = MateriaControlador.getInstancia().findFirst();
 		this.setLayout(new BorderLayout());
 		this.add(barraHerramientas(), BorderLayout.NORTH);
@@ -163,7 +163,7 @@ public class PanelGestionMateria extends JPanel {
 		JButton jbtEliminar = new JButton();
 		asignarFuncion(jbtEliminar, "eliminar.png", REMOVE, "Eliminar registro");
 
-		barra.setLayout(new FlowLayout());
+		//barra.setLayout(new FlowLayout());
 		barra.add(jbtPrimero);
 		barra.add(jbtAnterior);
 		barra.add(jbtPosterior);

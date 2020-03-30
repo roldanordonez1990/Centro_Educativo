@@ -1,5 +1,5 @@
 package model;
-// 
+
 import java.io.Serializable;
 import javax.persistence.*;
 import java.util.List;
@@ -71,8 +71,8 @@ public class Curso extends Entidad implements Serializable {
 	}
 
 	public boolean equals(Object obj) {
-		Curso cu = (Curso) obj;
-		if (this.id == cu.id) {
+		Curso tipo = (Curso) obj;
+		if (this.id == tipo.id) {
 			return true;
 		}
 		return false;

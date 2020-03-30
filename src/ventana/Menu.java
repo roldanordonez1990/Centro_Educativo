@@ -20,11 +20,16 @@ public class Menu extends JMenuBar {
 		
 		entidad.add(crearMenuItemLanzamientoJDialog("Gestión del Curso", new PanelGestionCurso()));
 		entidad.add(crearMenuItemLanzamientoJDialog("Gestión de las Materias", new PanelGestionMateria()));
+		entidad.add(crearMenuItemLanzamientoJDialog("Gestión de Estudiantes", new PanelGestionEstudiante()));
+		entidad.add(crearMenuItemLanzamientoJDialog("Gestión de Profesores", new PanelGestionProfesor()));
 		
 
 		this.add(entidad);
+		
+		
 	}
 	
+
 	/**
 	 * 
 	 * @param titulo
@@ -33,7 +38,7 @@ public class Menu extends JMenuBar {
 	 */
 	
 	//Método en el cual crearemos el JDialog
-	private JMenuItem crearMenuItemLanzamientoJDialog(String titulo, JPanel panel) {
+	public JMenuItem crearMenuItemLanzamientoJDialog(String titulo, JPanel panel) {
 
 		JMenuItem item = new JMenuItem(titulo);
 
