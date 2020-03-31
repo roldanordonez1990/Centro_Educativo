@@ -125,9 +125,6 @@ public class PanelDatosPersonales extends JPanel {
 		jtfApellido2.setEnabled(true);
 		c.anchor = GridBagConstraints.WEST;
 		this.add(jtfApellido2, c);
-		
-		
-		
 
 		// Inclusión del campo "Dni"
 		c.gridx = 0;
@@ -154,10 +151,6 @@ public class PanelDatosPersonales extends JPanel {
 		jtfDireccion.setEnabled(true);
 		c.anchor = GridBagConstraints.WEST;
 		this.add(jtfDireccion, c);
-
-		
-		
-		
 
 		// Inclusión del campo "Teléfono"
 		c.gridx = 0;
@@ -227,14 +220,13 @@ public class PanelDatosPersonales extends JPanel {
 			}
 
 		});
-		
+
 		c.gridx = 1;
 		c.gridy = 11;
 		jtfDireccion.setEnabled(true);
 		c.anchor = GridBagConstraints.WEST;
-		//c.insets = new Insets(0, 0, 5, 5);
-		//Le damos unas dimensiones al scroll
-		jsp.setPreferredSize( new Dimension(150, 150));
+		// Le damos unas dimensiones al scroll
+		jsp.setPreferredSize(new Dimension(150, 150));
 		this.add(jsp, c);
 
 		jbtCambiarImg = new JButton("Elegir imagen");
@@ -246,15 +238,15 @@ public class PanelDatosPersonales extends JPanel {
 				seleccionaFichero(getImagen());
 			}
 		});
-		
-		jbtCambiarImg.setPreferredSize( new Dimension(150, 20));
+
+		// Le damos las dimensiones al botón
+		jbtCambiarImg.setPreferredSize(new Dimension(150, 20));
 		c.gridx = 1;
 		c.gridy = 12;
 		c.anchor = GridBagConstraints.WEST;
 		this.add(jbtCambiarImg, c);
 
-
-	}   
+	}
 
 	/**
 	 * 
@@ -473,7 +465,7 @@ public class PanelDatosPersonales extends JPanel {
 
 							@Override
 							public void actionPerformed(ActionEvent e) {
-								//seleccionarImagen();
+								// seleccionarImagen();
 								seleccionaFichero(getImagen());
 
 							}
@@ -492,11 +484,11 @@ public class PanelDatosPersonales extends JPanel {
 	}
 
 	/**
-	 * @return 
+	 * @return
 	 * 
 	 */
 
-	private byte[] seleccionaFichero(byte[] imagenActual)  {
+	private byte[] seleccionaFichero(byte[] imagenActual) {
 		this.jfileChooser = new JFileChooser();
 		byte[] imagenSeleccionada = null;
 
@@ -523,8 +515,9 @@ public class PanelDatosPersonales extends JPanel {
 			@Override
 			public boolean accept(File f) {
 				if (f.isFile() && f.getAbsolutePath().endsWith(".jpg") || f.getAbsolutePath().endsWith(".png")
-						|| f.getAbsolutePath().endsWith(".jpeg") || f.getAbsolutePath().endsWith(".gif"));
-					
+						|| f.getAbsolutePath().endsWith(".jpeg") || f.getAbsolutePath().endsWith(".gif"))
+					;
+
 				return true;
 
 			}
@@ -536,8 +529,6 @@ public class PanelDatosPersonales extends JPanel {
 		if (seleccionUsuario == JFileChooser.APPROVE_OPTION) {
 			File fichero = this.jfileChooser.getSelectedFile();
 
-			
-
 			if (fichero.isFile()) {
 				try {
 					imagenSeleccionada = Files.readAllBytes(fichero.toPath());
@@ -548,7 +539,6 @@ public class PanelDatosPersonales extends JPanel {
 					}
 					setImagen(imagenSeleccionada);
 					return imagenSeleccionada;
-					
 
 				} catch (Exception ex) {
 					ex.printStackTrace();
@@ -556,7 +546,7 @@ public class PanelDatosPersonales extends JPanel {
 			}
 		}
 		imagenSeleccionada = imagenActual;
-		
+
 		return imagenActual;
 	}
 

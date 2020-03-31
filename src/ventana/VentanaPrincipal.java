@@ -18,8 +18,8 @@ import utils.CacheImagenes;
 
 public class VentanaPrincipal extends JFrame {
 
-	public static int ANCHO = 500;
-	public static int ALTO = 500;
+	public static int ANCHO = 400;
+	public static int ALTO = 400;
 	public static String TITULO_APLICACION = "Centro Educativo";
 	static JMenu jmenu = new JMenu();
 	
