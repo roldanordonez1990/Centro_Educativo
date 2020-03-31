@@ -567,7 +567,9 @@ public class PanelDatosPersonales extends JPanel {
 		// reininciar de nuevo el color a peporque no sabía cómo hacer que saliera por
 		// defecto de nuevo el colo gris
 		this.setBackground(Color.gray);
-		this.jsp.resetKeyboardActions();
+		//ponemos el sroll de la imagen vacío
+		this.jsp.setViewportView(null);
+		
 	}
 
 }
