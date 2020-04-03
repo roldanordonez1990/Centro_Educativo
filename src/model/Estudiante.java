@@ -159,4 +159,10 @@ public class Estudiante extends Entidad implements Serializable {
 		this.tipologiasexo = tipologiasexo;
 	}
 
+	@Override
+	public String toString() {
+		return nombre + " " + apellido1  + " " + apellido2  ;
+	}
+
+	
 }

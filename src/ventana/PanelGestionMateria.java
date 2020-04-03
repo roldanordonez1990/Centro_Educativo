@@ -123,6 +123,7 @@ public class PanelGestionMateria extends JPanel {
 		c.gridx = 0;
 		c.gridy = 4;
 		c.anchor = GridBagConstraints.EAST;
+		
 		panelGestion.add(new JLabel("Curso: "), c);
 
 		c.gridx = 1;

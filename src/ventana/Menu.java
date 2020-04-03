@@ -22,6 +22,7 @@ public class Menu extends JMenuBar {
 		entidad.add(crearMenuItemLanzamientoJDialog("Gestión de las Materias", new PanelGestionMateria()));
 		entidad.add(crearMenuItemLanzamientoJDialog("Gestión de Estudiantes", new PanelGestionEstudiante()));
 		entidad.add(crearMenuItemLanzamientoJDialog("Gestión de Profesores", new PanelGestionProfesor()));
+		entidad.add(crearMenuItemLanzamientoJDialog("Valoración Materia", new PanelGestionValoracionNotas()));
 		
 
 		this.add(entidad);

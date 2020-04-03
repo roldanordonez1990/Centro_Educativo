@@ -17,7 +17,7 @@ public class ToolBar extends JToolBar {
 		this.add(creaBoton(1, "", "valign16.png",  new PanelGestionEstudiante(), "Ir a Estudiante"));
 		this.add(creaBoton(2, "", "valign16.png", new PanelGestionProfesor(),"Ir a Profesor"));
 		this.add(creaBoton(3, "", "valign16.png", new PanelGestionMateria(), "Ir a Materia"));
-		//this.add(creaBoton(4, "", "gotoend.png", "Ir a Valoración-Materia"));
+		this.add(creaBoton(4, "", "gotoend.png", new PanelGestionValoracionNotas(), "Ir a Valoración-Materia"));
 	}
 
 	/**
