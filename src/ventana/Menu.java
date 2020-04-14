@@ -16,13 +16,14 @@ import javax.swing.JTabbedPane;
 public class Menu extends JMenuBar {
 
 	public Menu() {
-		JMenu entidad = new JMenu("Entidades");
+		JMenu entidad = new JMenu("Menú");
 		
 		entidad.add(crearMenuItemLanzamientoJDialog("Gestión del Curso", new PanelGestionCurso()));
 		entidad.add(crearMenuItemLanzamientoJDialog("Gestión de las Materias", new PanelGestionMateria()));
 		entidad.add(crearMenuItemLanzamientoJDialog("Gestión de Estudiantes", new PanelGestionEstudiante()));
 		entidad.add(crearMenuItemLanzamientoJDialog("Gestión de Profesores", new PanelGestionProfesor()));
-		entidad.add(crearMenuItemLanzamientoJDialog("Valoración Materia", new PanelGestionValoracionNotas()));
+		entidad.add(crearMenuItemLanzamientoJDialog("Valoración Notas", new PanelGestionValoracionNotas()));
+		entidad.add(crearMenuItemLanzamientoJDialog("Valoración Masiva", new PanelValoracionMasiva()));
 		
 
 		this.add(entidad);

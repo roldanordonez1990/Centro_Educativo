@@ -13,11 +13,12 @@ import javax.swing.JToolBar;
 public class ToolBar extends JToolBar {
 
 	public ToolBar() {
-		this.add(creaBoton(0, "", "gotostart.png", new PanelGestionCurso(), "Ir a Curso"));
-		this.add(creaBoton(1, "", "valign16.png",  new PanelGestionEstudiante(), "Ir a Estudiante"));
-		this.add(creaBoton(2, "", "valign16.png", new PanelGestionProfesor(),"Ir a Profesor"));
-		this.add(creaBoton(3, "", "valign16.png", new PanelGestionMateria(), "Ir a Materia"));
-		this.add(creaBoton(4, "", "gotoend.png", new PanelGestionValoracionNotas(), "Ir a Valoración-Materia"));
+		this.add(creaBoton(0, "Curso", "gotostart.png", new PanelGestionCurso(), "Ir a Curso"));
+		this.add(creaBoton(1, "Estudiante", "valign16.png",  new PanelGestionEstudiante(), "Ir a Estudiante"));
+		this.add(creaBoton(2, "Profesor", "valign16.png", new PanelGestionProfesor(),"Ir a Profesor"));
+		this.add(creaBoton(3, "Materia", "valign16.png", new PanelGestionMateria(), "Ir a Materia"));
+		this.add(creaBoton(4, "Notas", "gotoend.png", new PanelGestionValoracionNotas(), "Ir a Valoración-Materia"));
+		this.add(creaBoton(5, "Val. Notas", "ruedadentada.png", new PanelValoracionMasiva(), "Ir a Valoración-Masiva"));
 	}
 
 	/**
