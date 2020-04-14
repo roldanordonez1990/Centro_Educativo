@@ -20,8 +20,12 @@ import model.Valoracionmateria;
 import model.controladores.MateriaControlador;
 import model.controladores.ProfesorControlador;
 
-public class PanelValoracionMasiva extends JPanel {
 
+public class PanelValoracionMasiva extends JPanel {
+	
+	private static final int MAX = 10;
+	private static final int MIN = 0;
+	private static final int DEFAULT = 5;
 	// creamos el objeto para poder utilizarlo como puntero
 
 	Valoracionmateria actual = null;
@@ -41,8 +45,7 @@ public class PanelValoracionMasiva extends JPanel {
 	public PanelValoracionMasiva() {
 		this.setLayout(new BorderLayout());
 		this.add(construir(), BorderLayout.CENTER);
-		this.slider.setValue(5);
-
+		
 		this.slider.addChangeListener(new ChangeListener() {
 			@Override
 			public void stateChanged(ChangeEvent e) {
@@ -111,9 +114,9 @@ public class PanelValoracionMasiva extends JPanel {
 
 		// Incluimos el Slider
 
-		slider = new JSlider(0, 10, 5);
-		slider.setMinorTickSpacing(1);
-		slider.setMajorTickSpacing(10);
+		slider = new JSlider(MIN, MAX, DEFAULT);
+		slider.setMinorTickSpacing(MIN);
+		slider.setMajorTickSpacing(MAX);
 		slider.setPaintTicks(true);
 		slider.setPaintLabels(true);
 
