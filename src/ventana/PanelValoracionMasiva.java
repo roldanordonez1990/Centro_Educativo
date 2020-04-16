@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -32,6 +33,7 @@ import model.Valoracionmateria;
 import model.controladores.EstudianteControlador;
 import model.controladores.MateriaControlador;
 import model.controladores.ProfesorControlador;
+import model.controladores.ValoracionMateriaControlador;
 
 public class PanelValoracionMasiva extends JPanel {
 
@@ -59,6 +61,8 @@ public class PanelValoracionMasiva extends JPanel {
 	JButton jbtPosteriorTodos = new JButton(">>");
 
 	JButton jbtPosteriorUno = new JButton(">");
+
+	JButton jbtGuardar = new JButton("Guardar cambios");
 
 	// Modelo del elemento JList, necesario para que podamos agregar y eliminar
 	// elementos
@@ -231,6 +235,56 @@ public class PanelValoracionMasiva extends JPanel {
 		c.anchor = GridBagConstraints.CENTER;
 		panelGestion.add(panelScrollListas(), c);
 
+		c.fill = GridBagConstraints.CENTER;
+		jbtGuardar.setPreferredSize(new Dimension(120, 20));
+		c.gridx = 1;
+		c.gridy = 7;
+		c.anchor = GridBagConstraints.CENTER;
+		panelGestion.add(jbtGuardar, c);
+
+		jbtGuardar.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Profesor p = (Profesor) jcbProfesores.getSelectedItem();
+				Materia m = (Materia) jcbMateria.getSelectedItem();
+
+				//Inicializo una lista de los estudiantes
+				List<Estudiante> listaEstudiantes = new ArrayList<Estudiante>();
+
+				//Recorro los estudiantes que están seleccionados
+				for (int i = 0; i < listModelAlumnosSeleccionados.getSize(); i++) {
+						
+						//Añado a la lista de estudiantes el valor i de los seleccionados
+						listaEstudiantes.add(listModelAlumnosSeleccionados.get(i));
+					
+						//Recorro la nueva lista anteriormente añadida con los estudiantes escogidos
+					for (Estudiante es : listaEstudiantes) {
+						//La valoración de la nota coincidirá con el Profesor, la Materia y el Estudiante
+						Valoracionmateria valoracion = ValoracionMateriaControlador.getInstancia()
+								.findByEstudianteAndProfesorAndMateria(p, m, es);
+						//Si la valoración ya existe, añadiremos los cambios
+						if (valoracion != null) {
+							valoracion.setValoracion(slider.getValue());
+							valoracion.setFecha((Date) getJFormattedTextFieldDatePersonalizado().getValue());
+							ValoracionMateriaControlador.getInstancia().merge(valoracion);
+							
+						//Si la valoración de nota es nueva, añadiremos la nueva nota
+						} else {
+							Valoracionmateria v = new Valoracionmateria();
+							v.setEstudiante(es);
+							v.setMateria(m);
+							v.setProfesor(p);
+							v.setFecha((Date) getJFormattedTextFieldDatePersonalizado().getValue());
+							v.setValoracion(slider.getValue());
+							ValoracionMateriaControlador.getInstancia().persist(v);
+
+						}
+					}
+				}
+			}
+		});
+
 		return panelGestion;
 
 	}
@@ -277,7 +331,7 @@ public class PanelValoracionMasiva extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				// Guardamos los alumnos de la Jlist en un array, seleccionando sus índices
 				int indiceAlumnosSeleccionados[] = jlistAlumnosDisponibles.getSelectedIndices();
-				//Se hace el recorrido así para que siga un orden correcto
+				// Se hace el recorrido así para que siga un orden correcto
 				for (int i = indiceAlumnosSeleccionados.length - 1; i > -1; i--) {
 					Estudiante es = listModelAlumnosDisponibles.elementAt(indiceAlumnosSeleccionados[i]);
 
@@ -311,7 +365,7 @@ public class PanelValoracionMasiva extends JPanel {
 					// Y a su vez saldrá de la listModelAlumnosDisponibles donde había aparecido al
 					// principio
 					listModelAlumnosDisponibles.addElement(es);
-					
+
 				}
 			}
 		});
@@ -336,12 +390,9 @@ public class PanelValoracionMasiva extends JPanel {
 				// Una vez acabado el bucle después de haber recorrido todos los alumnos,
 				// eliminamos toda la lista de los disponibles
 				listModelAlumnosSeleccionados.removeAllElements();
-				
+
 			}
 
-			
-				
-			
 		});
 
 		return panelBotones;
