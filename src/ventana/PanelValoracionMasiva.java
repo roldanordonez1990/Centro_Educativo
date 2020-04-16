@@ -66,11 +66,11 @@ public class PanelValoracionMasiva extends JPanel {
 	// Lista de todas los Alumnos de la BBDD, para incluir en el elemento JList
 	private JList jlistAlumnosDisponibles = new JList<Estudiante>(listModelAlumnosDisponibles);
 	// Añadimos el JList de alumnos al Scroll
-	JScrollPane jspIzq = new JScrollPane(jlistAlumnosDisponibles);
+	private JScrollPane jspIzq = new JScrollPane(jlistAlumnosDisponibles);
 
 	private DefaultListModel<Estudiante> listModelAlumnosSeleccionados = new DefaultListModel<Estudiante>();
 	private JList jlistAlumnosSeleccionados = new JList<Estudiante>(listModelAlumnosSeleccionados);
-	JScrollPane jspDch = new JScrollPane(jlistAlumnosSeleccionados);
+	private JScrollPane jspDch = new JScrollPane(jlistAlumnosSeleccionados);
 
 	/**
 	 * 
@@ -209,10 +209,11 @@ public class PanelValoracionMasiva extends JPanel {
 		jbtActualizar.addActionListener(new ActionListener() {
 
 			@Override
-			public void actionPerformed(ActionEvent arg0) {
+			public void actionPerformed(ActionEvent e) {
 
 				// AL pulsar el botón, cargaremos la lista de alumnos dentro de la
-				// listModelAlimnosDisponibles
+				// listModelAlumnosDisponibles
+				listModelAlumnosDisponibles.removeAllElements();
 				List<Estudiante> listAlumnos = EstudianteControlador.getInstancia().findAllEstudiantes();
 
 				for (Estudiante estu : listAlumnos) {
@@ -240,7 +241,6 @@ public class PanelValoracionMasiva extends JPanel {
 		panelBotones.setLayout(new GridBagLayout());
 		GridBagConstraints b = new GridBagConstraints();
 
-		b.fill = GridBagConstraints.CENTER;
 		jbtPosteriorTodos.setPreferredSize(new Dimension(50, 20));
 		b.gridx = 0;
 		b.gridy = 0;
@@ -252,38 +252,35 @@ public class PanelValoracionMasiva extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				// Guardamos los alumnos de la Jlist en un array, seleccionando sus índices
-				List<Estudiante> pasaTodos = EstudianteControlador.getInstancia().findAllEstudiantes();
-				
-					for(Estudiante es: pasaTodos) {
-						
-					// Se añadirán a la listModel el que hayamos seleccionado
-					listModelAlumnosSeleccionados.addElement(es);
-					// Y a su vez saldrá de la listModelAlumnosDisponibles donde había aparecido al
-					// principio
-					listModelAlumnosDisponibles.removeElement(es);
+				// Recorremos la listModelDisponibles
+				for (int i = 0; i < listModelAlumnosDisponibles.getSize(); i++) {
+
+					// A la lista de seleccionados le añadimos los disponibles
+					listModelAlumnosSeleccionados.addElement(listModelAlumnosDisponibles.elementAt(i));
 				}
+				// Una vez acabado el bucle después de haber recorrido todos los alumnos,
+				// eliminamos toda la lista de los disponibles
+				listModelAlumnosDisponibles.removeAllElements();
 			}
 		});
 
-		b.fill = GridBagConstraints.CENTER;
+		// b.fill = GridBagConstraints.CENTER;
 		jbtPosteriorUno.setPreferredSize(new Dimension(50, 20));
 		b.gridx = 0;
 		b.gridy = 1;
 		b.anchor = GridBagConstraints.CENTER;
 		panelBotones.add(jbtPosteriorUno, b);
-		
+
 		jbtPosteriorUno.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// Guardamos los alumnos de la Jlist en un array, seleccionando sus índices
 				int indiceAlumnosSeleccionados[] = jlistAlumnosDisponibles.getSelectedIndices();
+				//Se hace el recorrido así para que siga un orden correcto
 				for (int i = indiceAlumnosSeleccionados.length - 1; i > -1; i--) {
 					Estudiante es = listModelAlumnosDisponibles.elementAt(indiceAlumnosSeleccionados[i]);
 
-					
-					jlistAlumnosDisponibles.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 					// Se añadirán a la listModel el que hayamos seleccionado
 					listModelAlumnosSeleccionados.addElement(es);
 					// Y a su vez saldrá de la listModelAlumnosDisponibles donde había aparecido al
@@ -293,21 +290,59 @@ public class PanelValoracionMasiva extends JPanel {
 			}
 		});
 
-		b.fill = GridBagConstraints.CENTER;
+		// b.fill = GridBagConstraints.CENTER;
 		jbtAnteriorUno.setPreferredSize(new Dimension(50, 20));
 		b.gridx = 0;
 		b.gridy = 2;
 		b.anchor = GridBagConstraints.CENTER;
 		panelBotones.add(jbtAnteriorUno, b);
 
-		b.fill = GridBagConstraints.CENTER;
+		jbtAnteriorUno.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// Guardamos los alumnos de la Jlist en un array, seleccionando sus índices
+				int indiceAlumnosDisponible[] = jlistAlumnosSeleccionados.getSelectedIndices();
+				for (int i = indiceAlumnosDisponible.length - 1; i > -1; i--) {
+					Estudiante es = listModelAlumnosSeleccionados.elementAt(indiceAlumnosDisponible[i]);
+
+					// Se añadirán a la listModel el que hayamos seleccionado
+					listModelAlumnosSeleccionados.removeElement(es);
+					// Y a su vez saldrá de la listModelAlumnosDisponibles donde había aparecido al
+					// principio
+					listModelAlumnosDisponibles.addElement(es);
+					
+				}
+			}
+		});
+
+		// b.fill = GridBagConstraints.CENTER;
 		jbtAnteriorTodos.setPreferredSize(new Dimension(50, 20));
 		b.gridx = 0;
 		b.gridy = 3;
 		b.anchor = GridBagConstraints.CENTER;
 		panelBotones.add(jbtAnteriorTodos, b);
-		
-		
+
+		jbtAnteriorTodos.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// Recorremos la listModelDisponibles
+				for (int i = 0; i < listModelAlumnosSeleccionados.getSize(); i++) {
+
+					// A la lista de seleccionados le añadimos los disponibles
+					listModelAlumnosDisponibles.addElement(listModelAlumnosSeleccionados.elementAt(i));
+				}
+				// Una vez acabado el bucle después de haber recorrido todos los alumnos,
+				// eliminamos toda la lista de los disponibles
+				listModelAlumnosSeleccionados.removeAllElements();
+				
+			}
+
+			
+				
+			
+		});
 
 		return panelBotones;
 
@@ -326,12 +361,12 @@ public class PanelValoracionMasiva extends JPanel {
 		c.gridwidth = 1;
 		c.insets = new Insets(2, 2, 2, 2);
 		c.fill = GridBagConstraints.BOTH;
-		c.gridx = 2;
+		c.gridx = 0;
 		c.gridy = 0;
 		// c.weighty = 1;
-		jspDch.setPreferredSize(new Dimension(220, 250));
-		c.anchor = GridBagConstraints.EAST;
-		panelListas.add(jspDch, c);
+		jspIzq.setPreferredSize(new Dimension(220, 250));
+		c.anchor = GridBagConstraints.WEST;
+		panelListas.add(jspIzq, c);
 
 		c.gridwidth = 1;
 		c.insets = new Insets(2, 2, 2, 2);
@@ -345,12 +380,12 @@ public class PanelValoracionMasiva extends JPanel {
 		c.gridwidth = 1;
 		c.insets = new Insets(2, 2, 2, 2);
 		c.fill = GridBagConstraints.BOTH;
-		c.gridx = 0;
+		c.gridx = 2;
 		c.gridy = 0;
 		// c.weighty = 1;
-		jspIzq.setPreferredSize(new Dimension(220, 250));
-		c.anchor = GridBagConstraints.WEST;
-		panelListas.add(jspIzq, c);
+		jspDch.setPreferredSize(new Dimension(220, 250));
+		c.anchor = GridBagConstraints.EAST;
+		panelListas.add(jspDch, c);
 
 		return panelListas;
 
